@@ -1,0 +1,28 @@
+stages:
+  - docker
+
+variables:
+  CONTAINER_IMAGE_NAME: dataspace/prometheus-x/catalog-api
+
+docker:image:
+  stage: docker
+  tags:
+    - luminvent
+  before_script:
+    - LAST_TAG_VERSION=$(git describe --tags --abbrev=0)
+    - LAST_TAG_COMMIT=$(git rev-list -n 1 tags/$LAST_TAG_VERSION --abbrev-commit)
+    - LAST_COMMIT=$(git rev-parse --short HEAD)
+    - CONTAINER_IMAGE_VERSION=$LAST_COMMIT
+    # If the last commit is tagged, use the tag version for the container image version
+    - if [ "$LAST_TAG_COMMIT" == "$LAST_COMMIT" ]; then CONTAINER_IMAGE_VERSION=$LAST_TAG_VERSION; fi
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CONTAINER_REGISTRY
+  script:
+    - docker build -t $CONTAINER_REGISTRY/$CONTAINER_IMAGE_NAME:$CONTAINER_IMAGE_VERSION -f docker/app/Dockerfile .
+    - |-
+        if [ "$LAST_TAG_COMMIT" == "$LAST_COMMIT" ]; then
+          docker push $CONTAINER_REGISTRY/$CONTAINER_IMAGE_NAME:$CONTAINER_IMAGE_VERSION
+        fi
+    - docker rmi $CONTAINER_REGISTRY/$CONTAINER_IMAGE_NAME:$CONTAINER_IMAGE_VERSION
+    - docker image prune -f
+    - echo $CONTAINER_REGISTRY/$CONTAINER_IMAGE_NAME
+
