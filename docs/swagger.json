@@ -45,7 +45,11 @@
       "get": {
         "summary": "Retrieves Data resources with pagination",
         "tags": ["Data Resources"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -148,7 +152,11 @@
       "get": {
         "summary": "Retrieves a single Data resource by its ID",
         "tags": ["Data Resources"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -288,7 +296,11 @@
       "get": {
         "summary": "Retrieves software resources with pagination",
         "tags": ["Software Resources"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -391,7 +403,11 @@
       "get": {
         "summary": "Retrieves a single Software resource by its ID",
         "tags": ["Software Resources"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -531,7 +547,11 @@
       "get": {
         "summary": "Retrieves Service offerings with pagination",
         "tags": ["Service Offerings"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -634,7 +654,11 @@
       "get": {
         "summary": "Retrieves a single Service Offering by its ID",
         "tags": ["Service Offerings"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1150,7 +1174,11 @@
       "get": {
         "summary": "Retrieves ecosystems with pagination",
         "tags": ["Ecosystems"],
-        "security": [],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "query",
@@ -1253,6 +1281,11 @@
       "get": {
         "summary": "Retrieves a single Ecosystem by its ID",
         "tags": ["Ecosystems"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "parameters": [
           {
             "in": "path",
@@ -1448,6 +1481,11 @@
       },
       "post": {
         "tags": ["Ecosystems"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
         "summary": "Create an invitation to an ecosystem",
         "requestBody": {
           "content": {
