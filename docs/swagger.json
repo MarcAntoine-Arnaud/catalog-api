@@ -1447,7 +1447,7 @@
         }
       },
       "post": {
-        "tags": ["Negotiation"],
+        "tags": ["Ecosystems"],
         "summary": "Create an invitation to an ecosystem",
         "requestBody": {
           "content": {
