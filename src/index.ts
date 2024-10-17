@@ -3,4 +3,6 @@ config();
 
 import { startServer } from "./server";
 
-startServer();
+(async () => {
+  await startServer();
+})();

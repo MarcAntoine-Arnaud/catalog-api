@@ -52,7 +52,10 @@ export const getParticipantSoftwareResources = async (
       SoftwareResource.find({
         providedBy: req.user.id,
       })
-        .populate([{ path: "category", model: GlobalPurpose }, { path: "representation", model: Representation }])
+        .populate([
+          { path: "category", model: GlobalPurpose },
+          { path: "representation", model: Representation },
+        ])
         .limit(queryOptions?.limit)
         .skip(queryOptions?.page * queryOptions?.limit)
         .lean(),
@@ -91,9 +94,10 @@ export const getSoftwareResourceById = async (
   next: NextFunction
 ) => {
   try {
-    const softwareResource = await SoftwareResource.findById(
-      req.params.id
-    ).populate([{ path: "representation", model: Representation }]).lean();
+    const softwareResource = await SoftwareResource.findById(req.params.id)
+      .populate([{ path: "representation", model: Representation }])
+      .lean();
+
     if (!softwareResource) {
       return res.status(404).json({
         code: 404,
@@ -122,9 +126,10 @@ export const getDCATSoftwareResourceById = async (
   next: NextFunction
 ) => {
   try {
-    const softwareResource = await SoftwareResource.findById(
-      req.params.id
-    ).populate([{ path: "representation", model: Representation }]).lean();
+    const softwareResource = await SoftwareResource.findById(req.params.id)
+      .populate([{ path: "representation", model: Representation }])
+      .lean();
+
     if (!softwareResource) {
       return res.status(404).json({
         code: 404,

@@ -33,7 +33,7 @@ export const getMyExchangeConfigurations = async (
 };
 
 /**
- * Returns a exchange configuration by ID
+ * Returns exchange configuration by ID
  */
 export const getExchangeConfigurationById = async (
   req: Request,
@@ -178,7 +178,7 @@ export const authorizeExchangeConfiguration = async (
 };
 
 /**
- * Negociates policies on the access of resources
+ * Negotiates policies on the access of resources
  * in the exchange configuration
  */
 export const negotiateExchangeConfigurationPolicy = async (
@@ -316,7 +316,7 @@ export const signExchangeConfiguration = async (
 
     try {
       // If both have applied signatures, we can inject the policies
-      // this avoid injecting the same policies multiple times
+      // this avoids injecting the same policies multiple times
       if (
         exchangeConf.signatures.consumer &&
         exchangeConf.signatures.provider

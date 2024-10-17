@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { buildResolvableSelfDescriptionURI } from "../../../libs/self-descriptions";
-import { DataResource } from "../../../models/DataResource";
-import { GlobalDataType } from "../../../models/GlobalDataType";
+import { DataResource } from "../../../models";
+import { GlobalDataType } from "../../../models";
 import { Representation } from "../../../models/Representation";
 
 const DEFAULT_QUERY_OPTIONS = {

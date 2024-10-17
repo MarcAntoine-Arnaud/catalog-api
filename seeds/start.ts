@@ -16,7 +16,7 @@ async function connectAndSeed(url: string) {
   } catch (error: any) {
     process.stdout.write(`Seed error for ${url}: ${error.message}`);
   } finally {
-    mongoose.disconnect();
+    await mongoose.disconnect();
   }
 }
 
@@ -32,4 +32,6 @@ async function run() {
   }
 }
 
-run();
+(async () => {
+  await run();
+})();

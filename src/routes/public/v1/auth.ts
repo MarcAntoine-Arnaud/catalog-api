@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import { issueJwt } from "../../../libs/jwt/jwt";
 import { Router } from "express";
-import { OrganizationAdmin } from "../../../models/OrganizationAdmin";
-import { Participant } from "../../../models/Participant";
+import { OrganizationAdmin } from "../../../models";
+import { Participant } from "../../../models";
 import { makeId } from "../../../utils/idGenerator";
 
 const r: Router = Router();

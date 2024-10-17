@@ -22,21 +22,20 @@ export const startServer = async (testPort?: number) => {
   });
   app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
-  // routes(app);
-  await setupRoutes(app);
+  setupRoutes(app);
 
   app.use(invalidEndpointHandler);
   app.use(globalErrorHandler);
 
   // Start the server
-  let resolve;
+  let resolve: (arg: any) => void;
   const promise = new Promise((r) => {
     resolve = r;
   });
   const server = app.listen(port, () => {
     //eslint-disable-next-line
     console.log(`Catalog-API running on: http://localhost:${port}`);
-    resolve(); // Resolve the promise from the outside
+    resolve(null); // Resolve the promise from the outside
   });
 
   return { server, app, promise }; // For tests

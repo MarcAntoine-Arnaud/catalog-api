@@ -1,10 +1,10 @@
 import { NextFunction, Request, Response } from "express";
-import { DataResource } from "../../../models/DataResource";
+import { DataResource } from "../../../models";
 import { buildResolvableSelfDescriptionURI } from "../../../libs/self-descriptions";
 import { mapCatalog, mapDataResource } from "../../../libs/dcat";
 import { ResourceTypes } from "../../../libs/dcat/types";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import { GlobalDataType } from "../../../models/GlobalDataType";
+import { GlobalDataType } from "../../../models";
 import { Representation } from "../../../models/Representation";
 
 const DEFAULT_QUERY_OPTIONS = {
@@ -40,7 +40,10 @@ export const getDataResources = async (
 
     const [resources, count] = await Promise.all([
       query
-        .populate([{ path: "category", model: GlobalDataType }, { path: "representation", model: Representation }])
+        .populate([
+          { path: "category", model: GlobalDataType },
+          { path: "representation", model: Representation },
+        ])
         .limit(queryOptions?.limit)
         .skip(queryOptions?.page * queryOptions?.limit)
         .lean(),
@@ -79,7 +82,9 @@ export const getDataResourceById = async (
   next: NextFunction
 ) => {
   try {
-    const dataResource = await DataResource.findById(req.params.id).populate([{ path: "representation", model: Representation }]).lean();
+    const dataResource = await DataResource.findById(req.params.id)
+      .populate([{ path: "representation", model: Representation }])
+      .lean();
     if (!dataResource) {
       return res.json({
         req,
